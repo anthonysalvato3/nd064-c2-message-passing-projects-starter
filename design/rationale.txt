@@ -1,0 +1,13 @@
+The person service is straightforward, with the data being inserted/retrieved on demand from the frontend application.
+With normal user behavior for creating and retrieving persons, I don't expect a large volume of requests.
+A REST API will be a simple and sufficient solution for this service.
+
+The location service, on the other hand, will receive frequent location updates from all convention participants as their locations constantly change.
+A large volume of requests is expected for POSTing, making gRPC a better choice.
+Because gRPC can take advantage of HTTP2 multiplexing, multiple requests can be fired with a single connection and return in any order.
+That way, we can eliminate the latency of waiting for connections to terminate for every request.
+Also, to avoid overloading the location POST service with messages, we can build a Kafka message queue in front.
+Then the service can act as a Kafka consumer on its own terms.
+
+Using a separate microservice for location GET makes sense because similarly to the person service, it will not be expected to handle a large volume of data.
+We will use this same justification to keep it as as simple REST API.
