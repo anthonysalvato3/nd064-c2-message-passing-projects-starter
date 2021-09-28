@@ -1,8 +1,8 @@
-## Service Deployments
-`kubectl apply -f deployment/[FILENAME].yaml
-
 ## Kafka Installation
 `helm install my-release ./kafka`
+
+## Service Deployments
+`kubectl apply -f deployment/[FILENAME].yaml`
 
 # UdaConnect
 ## Overview
